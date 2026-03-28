@@ -20,11 +20,11 @@ VALIDATE $? "Starting MySQL Server"
 # VALIDATE $? "Setting up root password"
 
 #Below code will be useful for idempotent nature
-mysql -h 172.31.1.229 -uroot -p${mysql_root_password} -e 'show databases;' &>>$LOGFILE
+mysql -h 172.31.1.229 -uroot -p${mysql_root_password} -e 'show databases;' &>> $LOGFILE
 if [ $? -ne 0 ]
 then
     mysql_secure_installation --set-root-pass ${mysql_root_password} &>> $LOGFILE
     VALIDATE $? "MySQL Root password Setup"
 else
-    echo -e "MySQL root password is already setup...$Y SKIPPING $N"
+    echo -e "MySQL root password is already setup...$Y SKIPPING $N" 
 fi
